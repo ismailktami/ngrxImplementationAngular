@@ -4,6 +4,7 @@ import {AppState} from "./app.state";
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as UserActions from './store/actions/user.actions'
+import * as CounterActions from './store/actions/counter.actions';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,13 +13,17 @@ import * as UserActions from './store/actions/user.actions'
 export class AppComponent implements OnInit {
 user:User;
 username:string;password:string;
-users:Observable<User[]>;
-constructor(private store:Store<AppState>){
-  this.users=store.select("user");
-  this.users.subscribe(data=>{
-    
-  })
+users:User[];
+counter:any;
 
+constructor(private store:Store<AppState>){
+  store.select("user").subscribe(data=>{
+    this.users=data;
+  });
+
+  store.select("counter").subscribe(data=>{
+    this.counter=data;
+  })
 }
 ngOnInit(){
 
@@ -32,5 +37,11 @@ AddUser(u,p){
 }
 deleteUser(index){
   this.store.dispatch(new UserActions.RemoveUser(index));
+}
+Increment(){
+this.store.dispatch(new CounterActions.Increment());
+}
+Decrement(){
+  this.store.dispatch(new CounterActions.Decrement());
 }
 }

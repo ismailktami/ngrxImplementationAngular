@@ -8,14 +8,13 @@ export const REMOVE_USER='[USER] REMOVE';
 export class AddUser implements Action{
  readonly type=ADD_USER
  constructor(public payload:User){
-
- }  
+ }
 }
  export class RemoveUser implements Action{
     readonly type = REMOVE_USER
     constructor(public payload:number){ 
         
-    }   
+}   
 
 
 }

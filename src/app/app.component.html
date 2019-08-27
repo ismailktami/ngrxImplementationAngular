@@ -1,12 +1,20 @@
 <div>        <input type="text"  #username />
         <input type="text" #password />
         <button  (click)="AddUser(username.value,password.value)">Add User</button>
-
 </div>
 
 <div>
  <ul >
-     <li (click)="deleteUser(i)" *ngFor="let u of users |async; let i =index" ><a style="cursor: pointer"  (click)="selectUser(u)">{{u.username}}||{{u.password}}</a></li>
+     <li (click)="deleteUser(i)" *ngFor="let u of users ; let i =index" ><a style="cursor: pointer"  (click)="selectUser(u)">{{u.username}}||{{u.password}}</a></li>
 
  </ul> 
+</div>
+
+
+
+<div>
+    <h2>Counter</h2>
+    <div>
+        <p>{{counter}}  </p><button (click)="Increment()">Increment</button><button (click)="Decrement()">Decrement</button>
+    </div>
 </div>
